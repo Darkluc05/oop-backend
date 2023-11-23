@@ -82,7 +82,7 @@ class Bottle
         } else if ($this->open === true) {
             $currentOpen = "open";
         }
-        echo "the bottle is $currentOpen<br/><br/>\n\n";
+        echo "the bottle is $currentOpen<br/>\n";
     }
 
     public function completeStatus()
@@ -100,7 +100,7 @@ class Bottle
         } else if ($this->open === true) {
             $currentOpen = "open";
         }
-        echo "the bottle is $currentOpen<br/><br/>\n\n";
+        echo "the bottle is $currentOpen<br/>\n";
     }
 
     public function changeOpacity(int $newOpacity): int
@@ -115,17 +115,23 @@ class Bottle
         return $this->opacity;
     }
 
+    public function hello(){
+        echo "hello";
+    }
+
 }
 
 $newBottle = new Bottle(["blue", "black"]);
 
 $newBottle->completeStatus();
+echo "<br/>";
 
 $newBottle->changeOpacity(80);
 
 $newBottle->changeColour(["red", "yellow", "black"]);
 
 $newBottle->completeStatus();
+echo "<br/>";
 
 $newBottle->fill(20);
 
@@ -135,12 +141,31 @@ $newBottle->open();
 $newBottle->fill(100);
 
 $newBottle->bottleStatus();
+echo "<br/>";
 
 $newBottle->drink(31);
 
 $newBottle->bottleStatus();
+echo "<br/>";
 
 $newBottle->close();
 
 $newBottle->bottleStatus();
-?>
+echo "<br/>";
+
+
+class Thermos extends Bottle{
+    private string $heatLevel = "cold";
+    private $bottle;
+    public function __construct($bottle){
+        $this->bottle = $bottle;
+    }
+    public function thermosStatus(){
+        $this->bottle->completeStatus();
+        echo "the heatlevel is ", $this->heatLevel;
+        
+    }
+}
+
+$thermos = new Thermos($newBottle);
+$thermos->thermosStatus();
