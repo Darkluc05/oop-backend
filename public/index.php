@@ -163,9 +163,24 @@ class Thermos extends Bottle{
     public function thermosStatus(){
         $this->bottle->completeStatus();
         echo "the heatlevel is ", $this->heatLevel;
+        echo "<br/>";
         
+    }
+
+    public function heatLevelChange(){
+        if($this->heatLevel == "cold"){
+            $this->heatLevel = "warm";
+            return $this->heatLevel;
+        } else if($this->heatLevel == "warm"){
+            $this->heatLevel = "cold";
+            return $this->heatLevel;
+        }
     }
 }
 
 $thermos = new Thermos($newBottle);
 $thermos->thermosStatus();
+echo "<br/>";
+$thermos->heatLevelChange();
+$thermos->thermosStatus();
+echo "<br/>";
